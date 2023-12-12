@@ -27,10 +27,10 @@ namespace FinBuckleMvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddHttpContextAccessor();
-            //services.AddTransient<HttpClientAuthorizationDelegateHandler>();
-            //services.AddHttpClient<IHomeService, HomeService>()
-            //    .AddHttpMessageHandler<HttpClientAuthorizationDelegateHandler>();
+            services.AddHttpContextAccessor();
+            services.AddTransient<HttpClientAuthorizationDelegateHandler>();
+            services.AddHttpClient<IHomeService, HomeService>()
+                .AddHttpMessageHandler<HttpClientAuthorizationDelegateHandler>();
             services.AddControllersWithViews();
 
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
@@ -48,8 +48,8 @@ namespace FinBuckleMvc
                     options.Prompt = "login";
                     options.ResponseType = OpenIdConnectResponseType.Code;
                     options.SaveTokens = true;
-                    //options.Scope.Add("finbuckleapi.scope");
-                    //options.GetClaimsFromUserInfoEndpoint = true;
+                    options.Scope.Add("finbuckleapi.scope");
+                    options.GetClaimsFromUserInfoEndpoint = true;
 
                 });
 

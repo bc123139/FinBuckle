@@ -1,5 +1,4 @@
 ﻿using Finbuckle.MultiTenant;
-using Finbuckle.MultiTenant.AspNetCore;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.Net.Http;

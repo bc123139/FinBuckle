@@ -22,18 +22,18 @@ namespace FinBuckleApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication("Bearer")
-                .AddJwtBearer("Bearer", opt =>
-                {
-                    opt.RequireHttpsMetadata = false;
-                    //opt.Authority = "https://localhost:5001";//Auth Server
-                    opt.Audience = "finbuckleapi";
+            //services.AddAuthentication("Bearer")
+            //    .AddJwtBearer("Bearer", opt =>
+            //    {
+            //        opt.RequireHttpsMetadata = false;
+            //        //opt.Authority = "https://localhost:5001";//Auth Server
+            //        opt.Audience = "finbuckleapi";
 
-                });
+            //    });
             services.AddControllers();
             services.AddMultiTenant<AppTenantInfo>()
                 .WithConfigurationStore()
-                .WithBasePathStrategy()
+                .WithRouteStrategy("tenant")
                 .WithPerTenantAuthentication();
 
             services.AddSwaggerGen(c =>
@@ -56,7 +56,7 @@ namespace FinBuckleApi
             app.UseRouting();
             app.UseMultiTenant();
 
-            app.UseAuthentication();
+            //app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

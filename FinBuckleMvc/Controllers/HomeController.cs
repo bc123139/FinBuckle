@@ -13,18 +13,18 @@ namespace FinBuckleMvc.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        //private readonly IHttpContextAccessor _httpContextAccessor;
-        //private readonly IHomeService _homeService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IHomeService _homeService;
 
 
         public HomeController(ILogger<HomeController> logger
-//            , IHttpContextAccessor httpContextAccessor
-//, IHomeService homeService
+             ,IHttpContextAccessor httpContextAccessor
+, IHomeService homeService
             )
         {
             _logger = logger;
-            //_httpContextAccessor = httpContextAccessor;
-            //_homeService = homeService;
+            _httpContextAccessor = httpContextAccessor;
+            _homeService = homeService;
         }
 
         public IActionResult Index()
@@ -39,7 +39,7 @@ namespace FinBuckleMvc.Controllers
         [Authorize]
         public async Task<IActionResult> Claims()
         {
-            //var homeResult = await _homeService.GetResult();
+            var homeResult = await _homeService.GetResult();
             //const string ACCESS_TOKEN = "access_token";
             //string token = await _httpContextAccessor.HttpContext.GetTokenAsync(ACCESS_TOKEN);
             return View();

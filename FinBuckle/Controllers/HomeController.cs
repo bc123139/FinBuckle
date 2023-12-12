@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace FinBuckleApi.Controllers
 {
     [ApiController]
-    [Route("{__tenant__}/[controller]")]
+    [Route("{tenant}/[controller]")]
     // [Authorize]
     public class HomeController : ControllerBase
     {
@@ -22,9 +22,9 @@ namespace FinBuckleApi.Controllers
         }
 
         [HttpGet(nameof(GetResult))]
-        public async Task<string> GetResult()
+        public async Task<ActionResult<string>> GetResult()
         {
-            return $"Api response for {_tenantInfo.Name}";
+            return Ok($"Api response for {_tenantInfo.Name}");
         }
     }
 }
