@@ -21,7 +21,7 @@ namespace FinBuckleMvc.Services
             try
             {
                 var dataString = await _apiClient.GetStringAsync($"https://localhost:5102/{tenantInfo.Identifier}/Home/GetResult");
-                return JsonConvert.DeserializeObject<string>(dataString);
+                return dataString;
             }
             catch (System.Exception ex)
             {

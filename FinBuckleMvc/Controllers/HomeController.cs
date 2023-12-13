@@ -40,8 +40,7 @@ namespace FinBuckleMvc.Controllers
         public async Task<IActionResult> Claims()
         {
             var homeResult = await _homeService.GetResult();
-            //const string ACCESS_TOKEN = "access_token";
-            //string token = await _httpContextAccessor.HttpContext.GetTokenAsync(ACCESS_TOKEN);
+            ViewBag.Home=homeResult;
             return View();
         }
 
