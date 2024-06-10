@@ -71,7 +71,7 @@ namespace AuthServer.Data
                                 Email = "utahir604@gmail.com",
                                 EmailConfirmed = true
                             };
-                            var result = userMgr.CreateAsync(user1, "Test@123").Result;
+                            var result = userMgr.CreateAsync(user1, "usmanPass").Result;
                             if (!result.Succeeded) throw new Exception(result.Errors.First().Description);
 
                             result = userMgr.AddClaimsAsync(user1,
@@ -99,7 +99,7 @@ namespace AuthServer.Data
                                 Email = "usman33651@gmail.com",
                                 EmailConfirmed = true
                             };
-                            var result = userMgr.CreateAsync(user2, "Test@123").Result;
+                            var result = userMgr.CreateAsync(user2, "usmanPass").Result;
                             if (!result.Succeeded) throw new Exception(result.Errors.First().Description);
 
                             result = userMgr.AddClaimsAsync(user2,
@@ -136,14 +136,14 @@ namespace AuthServer.Data
                         var clientId = $"mvc-{tenant.Identifier}";
                         if (!configurationDbContext.Clients.Where(c => c.ClientId == clientId).Any())
                         {
-                            var client = new IdentityServer4.Models.Client
+                            var client = new Client
                             {
                                 ClientId = clientId,
                                 ClientName = clientId,
                                 AllowedGrantTypes = GrantTypes.Code,
-                                RedirectUris = { "https://localhost:5002/signin-oidc" },
+                                RedirectUris = { $"{config["FinBuckleMvc"]}/signin-oidc" },
                                 AllowedScopes = { "openid", "profile", "finbuckleapi.scope" },
-                                ClientSecrets = { new IdentityServer4.Models.Secret("secret".Sha256()) }
+                                ClientSecrets = { new Secret("secret".Sha256()) }
                             };
                             configurationDbContext.Clients.Add(client.ToEntity());
                             configurationDbContext.SaveChanges();
@@ -154,9 +154,9 @@ namespace AuthServer.Data
                             Log.Debug("Clients already exist.");
                         }
 
-                        var apiScopes = new List<IdentityServer4.Models.ApiScope>
+                        var apiScopes = new List<ApiScope>
                              {
-                                 new IdentityServer4.Models.ApiScope("finbuckleapi.scope","FinBuckle Api")
+                                 new ApiScope("finbuckleapi.scope","FinBuckle Api")
                              };
                         if (!configurationDbContext.ApiScopes.Any())
                         {
@@ -167,9 +167,9 @@ namespace AuthServer.Data
                             configurationDbContext.SaveChanges();
                         }
 
-                        IEnumerable<IdentityServer4.Models.ApiResource> apiResources= new List<IdentityServer4.Models.ApiResource>
+                        IEnumerable<ApiResource> apiResources= new List<ApiResource>
                         {
-                            new IdentityServer4.Models.ApiResource("finbuckleapi","FinBuckle Api")
+                            new ApiResource("finbuckleapi","FinBuckle Api")
                             {
                                 Scopes={"finbuckleapi.scope"},
                                 //UserClaims =new List<string>{"role"}
