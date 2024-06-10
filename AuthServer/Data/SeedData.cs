@@ -71,7 +71,7 @@ namespace AuthServer.Data
                                 Email = "utahir604@gmail.com",
                                 EmailConfirmed = true
                             };
-                            var result = userMgr.CreateAsync(user1, "usmanPass").Result;
+                            var result = userMgr.CreateAsync(user1, "Test@123").Result;
                             if (!result.Succeeded) throw new Exception(result.Errors.First().Description);
 
                             result = userMgr.AddClaimsAsync(user1,
@@ -99,7 +99,7 @@ namespace AuthServer.Data
                                 Email = "usman33651@gmail.com",
                                 EmailConfirmed = true
                             };
-                            var result = userMgr.CreateAsync(user2, "usmanPass").Result;
+                            var result = userMgr.CreateAsync(user2, "Test@123").Result;
                             if (!result.Succeeded) throw new Exception(result.Errors.First().Description);
 
                             result = userMgr.AddClaimsAsync(user2,
