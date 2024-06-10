@@ -1,5 +1,3 @@
-using System;
-
 namespace FinBuckleMvc.Models
 {
     public class ErrorViewModel

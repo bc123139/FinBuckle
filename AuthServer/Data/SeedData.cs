@@ -1,7 +1,6 @@
 ﻿using AuthServer.Models;
 using Finbuckle.MultiTenant;
 using IdentityModel;
-using IdentityServer4.EntityFramework.Entities;
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.EntityFramework.Storage;
 using IdentityServer4.Models;

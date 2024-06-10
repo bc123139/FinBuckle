@@ -1,9 +1,4 @@
-﻿using Finbuckle.MultiTenant;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FinBuckleMvc
+﻿namespace FinBuckleMvc
 {
     //public class CustomTenantStore : IMultiTenantStore<AppTenantInfo>
     //{
